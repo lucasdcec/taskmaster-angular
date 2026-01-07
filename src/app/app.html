@@ -1,0 +1,16 @@
+<app-header />
+<main>
+  <ul id="users">
+    @for (user of users; track user.id){
+    <li>
+      <app-user [user]="user" (select)="receberIdPeloClick($event)"></app-user>
+    </li>
+    }
+  </ul>
+  @if (iDParaMostrar){
+  <app-tasks [userId]="iDParaMostrar"></app-tasks>
+
+  }@else {
+  <p id="fallback">Select a user to see their tasks</p>
+  }
+</main>
