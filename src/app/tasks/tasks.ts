@@ -43,9 +43,11 @@ export class Tasks {
     },
   ];
 
-  @Input(/*{ required: true }*/) idDoUsuario!: string;
-
   get tarefasDoUsuario() {
     return this.tasks.filter((task) => task.userId === this.userId);
+  }
+
+  completarTarefa(id: string) {
+    this.tasks = this.tasks.filter((task) => task.id != id);
   }
 }

@@ -1,5 +1,5 @@
 <div>
-  <button (click)="selectedId()">
+  <button [class.active]="selecionado" (click)="selectedId()">
     <img [src]="caminhoDaImagem()" [alt]="user.name" />
     <span> {{ user.name }} </span>
   </button>

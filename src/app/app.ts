@@ -18,4 +18,7 @@ export class App {
     // alert(this.iDParaMostrar);
     this.iDParaMostrar = id;
   }
+  get selectedUser() {
+    return this.users.find((user) => user.id === this.iDParaMostrar);
+  }
 }
