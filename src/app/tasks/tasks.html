@@ -1,8 +1,12 @@
+@if (adicionando){
+<app-add-task (cancel)="cancelarAdicionar()" (adicionandoTarefa)="adicionarTarefa($event)" />
+}
+
 <section id="tasks">
   <header>
     <h1>{{ selectedUser?.name }}' Tasks</h1>
     <menu>
-      <button>Add a task</button>
+      <button (click)="botaoDeAdicionar()">Add a task</button>
     </menu>
   </header>
   <ul>

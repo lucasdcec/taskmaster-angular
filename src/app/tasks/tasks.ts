@@ -1,16 +1,18 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy_users';
 import { Task } from './task/task';
+import { AddTask } from './add-task/add-task';
+import { NewTask } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
-  imports: [Task],
+  imports: [Task, AddTask],
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
 })
 export class Tasks {
   users = DUMMY_USERS;
-  @Input() userId?: string; // Diz para o TS: "isso pode não ser definido e estou ciente disso"
+  @Input() userId!: string; // Diz para o TS: "isso pode não ser definido e estou ciente disso"
 
   //@Input() id: string | undefined;
 
@@ -49,5 +51,26 @@ export class Tasks {
 
   completarTarefa(id: string) {
     this.tasks = this.tasks.filter((task) => task.id != id);
+  }
+
+  adicionando: boolean = false;
+  botaoDeAdicionar() {
+    this.adicionando = true;
+  }
+
+  cancelarAdicionar() {
+    this.adicionando = false;
+  }
+
+  adicionarTarefa(dadosDaNovatarefa: NewTask) {
+    const novaTarefa = {
+      id: new Date().getTime().toString(),
+      userId: this.userId,
+      title: dadosDaNovatarefa.title,
+      summary: dadosDaNovatarefa.summary,
+      dueDate: dadosDaNovatarefa.date,
+    };
+    this.tasks = [novaTarefa, ...this.tasks];
+    this.adicionando = false;
   }
 }
