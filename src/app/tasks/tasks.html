@@ -1,5 +1,5 @@
 @if (adicionando){
-<app-add-task (cancel)="cancelarAdicionar()" (adicionandoTarefa)="adicionarTarefa($event)" />
+<app-add-task [userId]="userId" (close)="cancelarAdicionar()" />
 }
 
 <section id="tasks">
@@ -12,7 +12,7 @@
   <ul>
     @for (task of tarefasDoUsuario; track task.id){
     <li>
-      <app-task [tarefa]="task" (complete)="completarTarefa($event)" />
+      <app-task [tarefa]="task" />
     </li>
     }
   </ul>

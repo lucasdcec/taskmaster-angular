@@ -1,6 +1,6 @@
 <article>
   <h2>{{ tarefa.title }}</h2>
-  <time> {{ tarefa.dueDate }} </time>
+  <time> {{ tarefa.dueDate | date : 'd MMM, y' }} </time>
   <p>{{ tarefa.summary }}</p>
   <p class="actions">
     <button (click)="completeTask()">Complete</button>

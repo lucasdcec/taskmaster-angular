@@ -1,18 +1,18 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { UserTask } from './task.model';
-
+import { DatePipe } from '@angular/common';
+import { TasksService } from '../tasks.service';
 @Component({
   selector: 'app-task',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './task.html',
   styleUrl: './task.css',
 })
 export class Task {
   @Input() tarefa!: UserTask;
 
-  @Output() complete = new EventEmitter(); // Isso para emitir (out) que clicou no botão
-
+  private tasksService = inject(TasksService);
   completeTask() {
-    this.complete.emit(this.tarefa.id);
+    this.tasksService.removeTask(this.tarefa.id);
   }
 }
